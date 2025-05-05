@@ -3,8 +3,10 @@
  * Handles communication with the server
  */
 
-// Base API URL - change this to the server's address in production
-const API_URL = 'https://your-server-url.com/api';
+// Configuration pour accéder au serveur depuis l'application Android
+// URL ngrok pour les tests
+const SERVER_URL = 'https://52c0-193-51-24-154.ngrok-free.app';
+const API_URL = `${SERVER_URL}/api`;
 
 // Helper to get the auth token from localStorage
 const getToken = () => localStorage.getItem('authToken');
