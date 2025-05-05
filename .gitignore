@@ -2,3 +2,5 @@ node_modules
 .qodo
 package-lock.json
 server/
+android/
+dist/
