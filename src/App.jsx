@@ -5,6 +5,7 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import Upload from './components/Upload';
 import Download from './components/Download';
+import ConnectivityTest from './components/ConnectivityTest';
 import apiService from './services/api';
 
 function App() {
@@ -73,12 +74,19 @@ function App() {
               <Upload />
             </ProtectedRoute>
           } 
-        />
-        <Route 
+        />        <Route 
           path="/download" 
           element={
             <ProtectedRoute>
               <Download />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/connectivity-test" 
+          element={
+            <ProtectedRoute>
+              <ConnectivityTest />
             </ProtectedRoute>
           } 
         />

@@ -4,15 +4,57 @@
  */
 
 // Configuration pour accéder au serveur depuis l'application Android
-// URL ngrok pour les tests
-const SERVER_URL = 'https://52c0-193-51-24-154.ngrok-free.app';
+// On détecte si on est en local (localhost) ou sur une connexion externe (ngrok)
+const isLocalhost = window.location.hostname === 'localhost';
+
+// URL du serveur en fonction de l'environnement
+const SERVER_URL = isLocalhost 
+  ? 'http://10.0.2.2:5000'  // 10.0.2.2 est l'adresse IP spéciale pour accéder à localhost depuis l'émulateur Android
+  : 'https://9be0-193-51-24-154.ngrok-free.app';  // URL ngrok ou votre serveur de production
+
 const API_URL = `${SERVER_URL}/api`;
+
+// Pour debug, afficher l'URL du serveur utilisée
+console.log('Android API - Using server URL:', SERVER_URL, 'isLocalhost:', isLocalhost);
 
 // Helper to get the auth token from localStorage
 const getToken = () => localStorage.getItem('authToken');
 
 // API service object
 const apiService = {
+  /**
+   * System endpoints
+   */
+  system: {
+    // Get the current API URL for debugging
+    getApiUrl: () => API_URL,
+    
+    // Test connectivity to the server
+    testConnection: async () => {
+      try {
+        console.log('Testing connection to:', `${API_URL}/test`);
+        const response = await fetch(`${API_URL}/test`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        });
+        
+        const data = await response.json();
+        
+        if (!response.ok) {
+          throw new Error(data.message || 'Erreur de connexion au serveur');
+        }
+        
+        console.log('Connection test response:', data);
+        return data;
+      } catch (error) {
+        console.error('Connection test error:', error);
+        throw error;
+      }
+    }
+  },
+
   /**
    * Authentication endpoints
    */

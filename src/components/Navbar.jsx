@@ -19,7 +19,8 @@ import {
   Menu as MenuIcon, 
   Dashboard as DashboardIcon, 
   CloudUpload as UploadIcon, 
-  CloudDownload as DownloadIcon, 
+  CloudDownload as DownloadIcon,
+  NetworkCheck as NetworkIcon, 
   ExitToApp as LogoutIcon 
 } from '@mui/icons-material';
 import { Link, useLocation } from 'react-router-dom';
@@ -33,11 +34,11 @@ function Navbar({ onLogout }) {
   const handleDrawerToggle = () => {
     setDrawerOpen(!drawerOpen);
   };
-  
-  const menuItems = [
+    const menuItems = [
     { text: 'Tableau de bord', icon: <DashboardIcon />, path: '/dashboard' },
     { text: 'Téléverser', icon: <UploadIcon />, path: '/upload' },
     { text: 'Télécharger', icon: <DownloadIcon />, path: '/download' },
+    { text: 'Test Connectivité', icon: <NetworkIcon />, path: '/connectivity-test' },
   ];
 
   const drawer = (

@@ -7,7 +7,17 @@ const config: CapacitorConfig = {
   server: {
     androidScheme: 'http',
     cleartext: true,
-    allowNavigation: ['*']
+    allowNavigation: [
+      '*',
+      'https://9be0-193-51-24-154.ngrok-free.app/*',
+      'http://10.0.2.2:5000/*',
+      'http://localhost:5000/*'
+    ]
+  },
+  // Add these logs to help debug connectivity issues
+  loggingBehavior: 'debug',
+  android: {
+    allowMixedContent: true
   }
 };
 
